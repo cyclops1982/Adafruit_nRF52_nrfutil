@@ -29,12 +29,12 @@ jobs:
         cd dist
         7z a -tzip ../../adafruit-nrfutil--${{ github.event.release.tag_name }}-win.zip adafruit-nrfutil.exe
 
-    - name: Upload Release Asset
-      uses: softprops/action-gh-release@v2
-      with:
-        files: |
-          adafruit-nrfutil--${{ github.event.release.tag_name }}-win.zip
-          adafruit-nrfutil--${{ github.event.release.tag_name }}-win.zip
+        #    - name: Upload Release Asset
+        # uses: softprops/action-gh-release@v2
+        # with:
+        #files: |
+        #   adafruit-nrfutil--${{ github.event.release.tag_name }}-win.zip
+        #  adafruit-nrfutil--${{ github.event.release.tag_name }}-win.zip
 
   macOS:
     runs-on: macos-latest
