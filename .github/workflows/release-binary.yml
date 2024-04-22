@@ -32,9 +32,9 @@ jobs:
     - name: Upload Release Asset
       uses: softprops/action-gh-release@v2
       with:
-        asset_path: adafruit-nrfutil--${{ github.event.release.tag_name }}-win.zip
-        asset_name: adafruit-nrfutil--${{ github.event.release.tag_name }}-win.zip
-        asset_content_type: application/zip
+        files: |
+          adafruit-nrfutil--${{ github.event.release.tag_name }}-win.zip
+          adafruit-nrfutil--${{ github.event.release.tag_name }}-win.zip
 
   macOS:
     runs-on: macos-latest
