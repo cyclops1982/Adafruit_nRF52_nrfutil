@@ -30,11 +30,8 @@ jobs:
         7z a -tzip ../../adafruit-nrfutil--${{ github.event.release.tag_name }}-win.zip adafruit-nrfutil.exe
 
     - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v2
       with:
-        upload_url: ${{ github.event.release.upload_url }}
         asset_path: adafruit-nrfutil--${{ github.event.release.tag_name }}-win.zip
         asset_name: adafruit-nrfutil--${{ github.event.release.tag_name }}-win.zip
         asset_content_type: application/zip
