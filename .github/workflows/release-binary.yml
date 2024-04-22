@@ -29,41 +29,8 @@ jobs:
         cd dist
         7z a -tzip ../../adafruit-nrfutil--${{ github.event.release.tag_name }}-win.zip adafruit-nrfutil.exe
 
-        #    - name: Upload Release Asset
-        # uses: softprops/action-gh-release@v2
-        # with:
-        #files: |
-        #   adafruit-nrfutil--${{ github.event.release.tag_name }}-win.zip
-        #  adafruit-nrfutil--${{ github.event.release.tag_name }}-win.zip
-
-  macOS:
-    runs-on: macos-latest
-
-    steps:
-    - name: Setup Python
-      uses: actions/setup-python@v1
-      with:
-        python-version: '3.x'
-
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Create binaries
-      run: |
-        pip3 install pyinstaller
-        pip3 install -r requirements.txt
-        cd nordicsemi
-        pyinstaller __main__.py --onefile --clean --name adafruit-nrfutil
-        cd dist
-        7z a -tzip ../../adafruit-nrfutil--${{ github.event.release.tag_name }}-macos.zip adafruit-nrfutil
-
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      if: ${{ github.event_name == 'release' }}
-      with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: adafruit-nrfutil--${{ github.event.release.tag_name }}-macos.zip
-        asset_name: adafruit-nrfutil--${{ github.event.release.tag_name }}-macos.zip
-        asset_content_type: application/zip
+    - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-tool.zip
+          path: ../../adafruit-nrfutil--${{ github.event.release.tag_name }}-win.zip 
